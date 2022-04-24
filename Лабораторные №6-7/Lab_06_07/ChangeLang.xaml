@@ -1,0 +1,17 @@
+﻿<Window x:Class="Lab_06_07.ChangeLang"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_06_07"
+        mc:Ignorable="d"
+        Title="ChangeLang" Height="400" Width="400" FontFamily="Georgia" FontSize="25" Background="LightGreen">
+    <Grid>
+        <TextBlock Text="{DynamicResource m_ChangeLang}" Margin="30 30 30 30" HorizontalAlignment="Center"></TextBlock>
+        <ComboBox x:Name="Language" SelectionChanged="Language_SelectionChanged" Loaded="Language_Loaded" Margin="78,74,78,255"/>
+
+        <TextBlock Text="{DynamicResource m_ChangeTheme}" Margin="0,170,0,30" HorizontalAlignment="Center"></TextBlock>
+        <ComboBox x:Name="Theme" Margin="78,212,78,122"/>
+
+    </Grid>
+</Window>
