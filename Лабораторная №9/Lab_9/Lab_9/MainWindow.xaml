@@ -1,0 +1,79 @@
+﻿<Window x:Class="Lab_9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_9"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1000" Foreground="black" Background="#FFCCFFEE" FontFamily="Georgia">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Commands.Visible" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+
+    <Window.Resources>
+        <local:Phone Title="iPhone 10" Price="1500" x:Key="iPhone10"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="157*"/>
+            <RowDefinition Height="160*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" x:Name="Grid_Col_1" Visibility="Collapsed" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label Content="bubbling events" FontSize="18" HorizontalAlignment="Center"/>
+                <StackPanel VerticalAlignment="Center" MouseDown="Control1_MouseDown">
+                    <Button Width="140" Height="100" HorizontalAlignment="Left" MouseDown="Control1_MouseDown">
+                        <Ellipse Height="80" Width="80" Fill="LightCoral" MouseDown="Control1_MouseDown"/>
+                    </Button>
+                </StackPanel>
+                <TextBlock x:Name="textBlock1" Margin="0,40,30,0" FontSize="18" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <Label Content="tunneling events" FontSize="18" HorizontalAlignment="Center"/>
+                <StackPanel VerticalAlignment="Center" PreviewMouseDown="Control2_MouseDown">
+                    <Button Width="150" Height="100" HorizontalAlignment="Left" PreviewMouseDown="Control2_MouseDown">
+                        <Ellipse Height="80" Width="80" Fill="LightCoral" MouseDown="Control2_MouseDown"/>
+                    </Button>
+                </StackPanel>
+                <TextBlock x:Name="textBlock2"  Margin="0,40,30,0" FontSize="18" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Label Content="direct events" FontSize="18" HorizontalAlignment="Center"/>
+                <StackPanel VerticalAlignment="Center">
+                    <Button Width="150" Height="100" HorizontalAlignment="Left" MouseDown="Control3_MouseDown">
+                        <Ellipse Height="80" Width="80" Fill="LightCoral" MouseDown="Control3_MouseDown"/>
+                    </Button>
+                </StackPanel>
+                <TextBlock x:Name="textBlock3"  Margin="0,40,30,0" FontSize="18" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel Width="400" HorizontalAlignment="Left" DataContext="{StaticResource iPhone10}">
+                <Label Content="Title" FontSize="25" FontFamily="Georgia" HorizontalAlignment="Center" Margin="20"/>
+                <TextBox Margin="50,-10,50,0" FontSize="20" Text="{Binding Title}" FontFamily="Georgia"/>
+                <local:UserControl1 Secret="{Binding Title}"/>
+                <Label Content="Price" FontSize="25" FontFamily="Georgia" HorizontalAlignment="Center" Margin="20"/>
+                <TextBox Margin="50,-10,50,0" FontSize="20" Text="{Binding Price}" FontFamily="Georgia"/>
+                <local:UserControl1 Secret="{Binding Price}"/>
+                <local:UserControl1 FontSize="18" Margin="0 50">
+                    <local:UserControl1.Secret>
+                        <Rectangle RadiusX="50" RadiusY="50" Height="20" Width="20" Fill="#FF952323"/>
+                    </local:UserControl1.Secret>
+                </local:UserControl1>
+            </StackPanel>
+        </Grid>
+        <Button Command="local:Commands.Visible" Content="Visible" FontSize="18" Width="100" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="390,0,0,10" FontFamily="Georgia" Background="#FF37DAA3" RenderTransformOrigin="0.45,-3.2" Click="Button_Click" Grid.Row="1"/>
+    </Grid>
+</Window>
